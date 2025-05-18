@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const LANGUAGES = ['tr', 'en', 'de'];
@@ -12,7 +11,6 @@ const LanguageContext = createContext();
 export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState(DEFAULT_LANGUAGE);
   const [translations, setTranslations] = useState({});
-  const router = useRouter();
 
   // Load translations for the current language
   useEffect(() => {

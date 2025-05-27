@@ -3,11 +3,8 @@
 import { useLanguage } from '@/src/lib/i18n';
 import Button from '@/src/components/ui/Button';
 import Image from 'next/image';
-import { useModal } from '@/src/context/ModalContext';
-
 export default function HeroSection() {
   const { t } = useLanguage();
-  const { openModal } = useModal();
   
   return (
     <section className="bg-gradient-to-br from-purple-50 to-indigo-100 py-20 md:py-32">
@@ -23,7 +20,12 @@ export default function HeroSection() {
             <p className="text-lg text-gray-700 mb-8">
               {t('hero.subtitle2')}
             </p>
-            <Button onClick={openModal} size="lg">
+            <Button 
+              data-cal-link="berk-capar-jb7kj5/30min"
+              data-cal-namespace="30min"
+              data-cal-config='{"layout":"month_view"}'
+              size="lg"
+            >
               {t('hero.cta')}
             </Button>
           </div>

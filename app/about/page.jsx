@@ -68,7 +68,7 @@ const values = [
 
 export default function AboutPage() {
   const { t } = useLanguage();
-  const { openModal } = useModal();
+
   
   return (
     <section className="py-20 bg-white text-gray-700">
@@ -93,7 +93,13 @@ export default function AboutPage() {
           </p>
           
           <div className="text-center py-6">
-            <Button onClick={openModal} variant="primary" size="lg">
+                          <Button 
+                data-cal-link="berk-capar-jb7kj5/30min"
+                data-cal-namespace="30min"
+                data-cal-config='{"layout":"month_view"}'
+                variant="primary" 
+                size="lg"
+              >
               {t('about.cta')}
             </Button>
           </div>

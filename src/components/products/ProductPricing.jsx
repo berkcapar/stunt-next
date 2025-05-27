@@ -12,7 +12,7 @@ export default function ProductPricing({
   productPageLink
 }) {
   const { t } = useLanguage();
-  const { openModal } = useModal();
+
   const [hoveredCard, setHoveredCard] = useState(null);
   
   return (
@@ -71,7 +71,9 @@ export default function ProductPricing({
                 
                 <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                   <Button 
-                    onClick={openModal}
+                    data-cal-link="berk-capar-jb7kj5/30min"
+                    data-cal-namespace="30min"
+                    data-cal-config='{"layout":"month_view"}'
                     variant={plan.popular ? 'primary' : 'outline'} 
                     className="w-full justify-center"
                   >

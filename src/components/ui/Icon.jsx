@@ -17,8 +17,10 @@ import {
 import { 
   faFacebookF,
   faTwitter,
+  faXTwitter,
   faLinkedinIn, 
-  faInstagram 
+  faInstagram,
+  faYoutube
 } from '@fortawesome/free-brands-svg-icons';
 
 // Add icons to the library
@@ -35,8 +37,10 @@ library.add(
   // Add brand icons
   faFacebookF,
   faTwitter,
+  faXTwitter,
   faLinkedinIn,
-  faInstagram
+  faInstagram,
+  faYoutube
 );
 
 // Icon mapping
@@ -70,8 +74,10 @@ const iconMap = {
   // Add brand icons to mapping
   'facebook': faFacebookF,
   'twitter': faTwitter,
+  'x-twitter': faXTwitter,
   'linkedin': faLinkedinIn,
-  'instagram': faInstagram
+  'instagram': faInstagram,
+  'youtube': faYoutube
 };
 
 export default function Icon({ icon, className }) {

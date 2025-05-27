@@ -4,8 +4,6 @@ import { useLanguage } from '@/src/lib/i18n';
 import Button from '@/src/components/ui/Button';
 import Icon from '@/src/components/ui/Icon';
 import Image from 'next/image';
-import { useModal } from '@/src/context/ModalContext';
-
 export default function ProductLayout({ 
   productId, 
   icon, 
@@ -22,7 +20,6 @@ export default function ProductLayout({
   children
 }) {
   const { t } = useLanguage();
-  const { openModal } = useModal();
   
   return (
     <>
@@ -45,7 +42,12 @@ export default function ProductLayout({
                 {t(descriptionKey)}
               </p>
               
-              <Button onClick={openModal} size="lg">
+              <Button 
+                data-cal-link="berk-capar-jb7kj5/30min"
+                data-cal-namespace="30min"
+                data-cal-config='{"layout":"month_view"}'
+                size="lg"
+              >
                 {t('product.start_now')}
               </Button>
             </div>

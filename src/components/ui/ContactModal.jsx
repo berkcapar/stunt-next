@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '@/src/lib/i18n';
 import Icon from '@/src/components/ui/Icon';
-import Script from 'next/script';
 
 export default function ContactModal({ isOpen, onClose }) {
   const { t, language } = useLanguage();
-  const calendlyScriptRef = useRef(null);
 
   const getInstructions = () => {
     switch(language) {
@@ -19,31 +17,6 @@ export default function ContactModal({ isOpen, onClose }) {
         return "Tell us about your situation. In a one-on-one meeting, we will understand your needs and prepare a suitable demo for you.";
     }
   };
-
-  useEffect(() => {
-    if (isOpen && typeof window !== 'undefined') {
-      const existingScript = document.getElementById('calendly-script');
-      if (existingScript) {
-        existingScript.remove();
-      }
-      
-      const script = document.createElement('script');
-      script.id = 'calendly-script';
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.async = true;
-      script.onload = () => {
-        console.log('Calendly script loaded');
-      };
-      document.body.appendChild(script);
-      calendlyScriptRef.current = script;
-      
-      return () => {
-        if (calendlyScriptRef.current) {
-          calendlyScriptRef.current.remove();
-        }
-      };
-    }
-  }, [isOpen]);
 
   useEffect(() => {
     const handleEsc = (event) => {
@@ -97,11 +70,14 @@ export default function ContactModal({ isOpen, onClose }) {
             {getInstructions()}
           </p>
 
-          <div 
-            className="calendly-inline-widget w-full" 
-            data-url="https://calendly.com/berkcapar?hide_gdpr_banner=1" 
-            style={{ minWidth: '320px', height: '700px' }}
-          ></div>
+          <button 
+            data-cal-link="berk-capar-jb7kj5/30min"
+            data-cal-namespace="30min"
+            data-cal-config='{"layout":"month_view"}'
+            className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 text-lg"
+          >
+            Schedule a Call
+          </button>
         </div>
       </div>
     </>

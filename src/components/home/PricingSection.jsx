@@ -5,7 +5,7 @@ import Icon from '@/src/components/ui/Icon';
 import Button from '@/src/components/ui/Button';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useModal } from '@/src/context/ModalContext';
+
 
 const packages = [
   {
@@ -64,7 +64,7 @@ const packages = [
 
 export default function PricingSection() {
   const { t } = useLanguage();
-  const { openModal } = useModal();
+
   const [hoveredCard, setHoveredCard] = useState(null);
   
   return (
@@ -123,7 +123,9 @@ export default function PricingSection() {
                 
                 <div className="flex flex-col items-center gap-2 mt-auto">
                   <Button 
-                    onClick={openModal}
+                    data-cal-link="berk-capar-jb7kj5/30min"
+                    data-cal-namespace="30min"
+                    data-cal-config='{"layout":"month_view"}'
                     variant="primary" 
                     className="w-full text-center py-2.5 flex items-center justify-center"
                   >

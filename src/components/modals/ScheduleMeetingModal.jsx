@@ -13,24 +13,7 @@ export default function ScheduleMeetingModal({ isOpen, onClose }) {
     challenge: ''
   });
   
-  const [showCalendly, setShowCalendly] = useState(false);
-
-  useEffect(() => {
-    // Load Calendly script when modal is open
-    if (isOpen && !document.getElementById('calendly-script')) {
-      const script = document.createElement('script');
-      script.id = 'calendly-script';
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.async = true;
-      document.body.appendChild(script);
-      
-      return () => {
-        if (document.getElementById('calendly-script')) {
-          document.getElementById('calendly-script').remove();
-        }
-      };
-    }
-  }, [isOpen]);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +21,7 @@ export default function ScheduleMeetingModal({ isOpen, onClose }) {
   };
   
   const handleSubmit = () => {
-    setShowCalendly(true);
+    setShowCalendar(true);
   };
 
   if (!isOpen) return null;
@@ -60,7 +43,7 @@ export default function ScheduleMeetingModal({ isOpen, onClose }) {
             </button>
           </div>
           
-          {!showCalendly ? (
+          {!showCalendar ? (
             <>
               <p className="text-gray-600 mb-6">
                 Let us customize Stunt for your business. Fill in the form below to schedule a free strategy call.
@@ -144,12 +127,18 @@ export default function ScheduleMeetingModal({ isOpen, onClose }) {
               </div>
             </>
           ) : (
-            <div className="calendly-container" style={{ height: '630px' }}>
-              <div 
-                className="calendly-inline-widget" 
-                data-url="https://calendly.com/berkcapar/30min" 
-                style={{ minWidth: '320px', height: '630px' }}
-              ></div>
+            <div className="text-center">
+              <p className="text-gray-600 mb-6">
+                Great! Now click the button below to schedule your call.
+              </p>
+              <button 
+                data-cal-link="berk-capar-jb7kj5/30min"
+                data-cal-namespace="30min"
+                data-cal-config='{"layout":"month_view"}'
+                className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 text-lg"
+              >
+                Schedule Your Call
+              </button>
             </div>
           )}
         </div>

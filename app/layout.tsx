@@ -110,6 +110,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Server-side'da environment variable'ı oku - sadece production'da
+  const gaId = process.env.NODE_ENV === 'production' ? process.env.GA_MEASUREMENT_ID : undefined;
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -167,7 +170,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-gray-50 text-gray-900 antialiased flex flex-col min-h-screen`}>
-        <ClientLayout>{children}</ClientLayout>
+        <ClientLayout gaId={gaId}>{children}</ClientLayout>
       </body>
     </html>
   );

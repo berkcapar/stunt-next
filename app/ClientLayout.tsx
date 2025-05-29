@@ -5,14 +5,15 @@ import NavBar from '@/src/components/layout/NavBar';
 import Footer from '@/src/components/layout/Footer';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 
-export default function ClientLayout({
-  children,
-}: {
+interface ClientLayoutProps {
   children: React.ReactNode;
-}) {
+  gaId?: string;
+}
+
+export default function ClientLayout({ children, gaId }: ClientLayoutProps) {
   return (
     <LanguageProvider>
-      <GoogleAnalytics />
+      <GoogleAnalytics gtag={gaId} />
       <NavBar />
       <main className="pt-16 flex-grow">
         {children}

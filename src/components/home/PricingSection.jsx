@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/src/lib/i18n';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import Icon from '@/src/components/ui/Icon';
 import Button from '@/src/components/ui/Button';
 import Link from 'next/link';
@@ -64,9 +65,19 @@ const packages = [
 
 export default function PricingSection() {
   const { t } = useLanguage();
+  const { trackCalendarOpen, trackPricingView } = useAnalytics();
 
   const [hoveredCard, setHoveredCard] = useState(null);
   
+  const handlePricingCTA = (packageName) => {
+    trackCalendarOpen(`pricing_${packageName}`);
+    trackPricingView(packageName);
+  };
+
+  const handleMoreDetails = (packageName) => {
+    trackPricingView(`details_${packageName}`);
+  };
+
   return (
     <section id="pricing" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -126,6 +137,7 @@ export default function PricingSection() {
                     data-cal-link="berk-capar-jb7kj5/30min"
                     data-cal-namespace="30min"
                     data-cal-config='{"layout":"month_view"}'
+                    onClick={() => handlePricingCTA(pkg.id)}
                     variant="primary" 
                     className="w-full text-center py-2.5 flex items-center justify-center"
                   >
@@ -134,6 +146,7 @@ export default function PricingSection() {
                   
                   <Link 
                     href={pkg.link}
+                    onClick={() => handleMoreDetails(pkg.id)}
                     className="text-purple-600 hover:text-purple-700 text-sm font-medium hover:underline transition-colors duration-200 mt-1"
                   >
                     {t('pricing.more_details')}

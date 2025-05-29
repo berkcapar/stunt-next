@@ -1,10 +1,17 @@
 'use client';
 
 import { useLanguage } from '@/src/lib/i18n';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import Button from '@/src/components/ui/Button';
 import Image from 'next/image';
+
 export default function HeroSection() {
   const { t } = useLanguage();
+  const { trackCalendarOpen } = useAnalytics();
+  
+  const handleScheduleClick = () => {
+    trackCalendarOpen('hero_cta');
+  };
   
   return (
     <section className="bg-gradient-to-br from-purple-50 to-indigo-100 py-20 md:py-32">
@@ -24,6 +31,7 @@ export default function HeroSection() {
               data-cal-link="berk-capar-jb7kj5/30min"
               data-cal-namespace="30min"
               data-cal-config='{"layout":"month_view"}'
+              onClick={handleScheduleClick}
               size="lg"
             >
               {t('hero.cta')}

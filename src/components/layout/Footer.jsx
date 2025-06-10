@@ -38,9 +38,14 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#contact" className="text-gray-400 hover:text-white transition-colors">
+                <button 
+                  data-cal-link="berk-capar-jb7kj5/30min"
+                  data-cal-namespace="30min"
+                  data-cal-config='{"layout":"month_view"}'
+                  className="text-gray-400 hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0"
+                >
                   {t('footer.contact')}
-                </Link>
+                </button>
               </li>
             </ul>
           </div>

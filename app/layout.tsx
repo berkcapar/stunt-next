@@ -11,6 +11,10 @@ export const metadata: Metadata = {
     template: '%s | Stunt'
   },
   description: 'Stop overpaying for marketing! Get AI-powered marketing automation: reports, social media content, SEO articles & creative generation. Save time and money while finding new customers.',
+  // Google Search Console verification - eğer gerekirse buraya eklenecek
+  // verification: {
+  //   google: 'your-google-site-verification-code'
+  // },
   keywords: [
     'AI marketing automation',
     'marketing automation platform',

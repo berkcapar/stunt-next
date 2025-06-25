@@ -1,16 +1,14 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useParams, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const LANGUAGES = ['tr', 'en', 'de'];
-const DEFAULT_LANGUAGE = 'tr';
 
 // Create a context to manage the language state
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  const params = useParams();
   const pathname = usePathname();
   const router = useRouter();
   
@@ -64,30 +62,31 @@ export function LanguageProvider({ children }) {
     }
   };
 
-  // Translate function
   const t = (key) => {
     const keys = key.split('.');
     let value = translations;
     
-    for (let i = 0; i < keys.length; i++) {
-      if (value === undefined) return key;
-      value = value[keys[i]];
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k];
+      } else {
+        return key; // Return key if translation not found
+      }
     }
     
     return value || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage, t, LANGUAGES }}>
+    <LanguageContext.Provider value={{ language, changeLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
 }
 
-// Custom hook to use the language context
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;

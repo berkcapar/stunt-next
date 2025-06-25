@@ -19,10 +19,10 @@ export default function AboutPageClient() {
             worksFor: {
               '@type': 'Organization',
               name: 'Stunt',
-              url: 'https://stunt.ai'
+              url: 'https://stuntai.co'
             },
-            url: 'https://stunt.ai/about',
-            image: 'https://stunt.ai/berk-capar.jpg',
+            url: 'https://stuntai.co/about',
+            image: 'https://stuntai.co/berk-capar.jpg',
             description: 'Founder of Stunt AI with 8 years of experience in marketing technology product management. Previously worked with Samsung, Stack Overflow, Nestle, and Unilever.',
             alumniOf: [
               {

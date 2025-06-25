@@ -105,7 +105,7 @@ const pricing = [
   }
 ];
 
-export default function ReportingPage() {
+export default function ReportingPageClient() {
   return (
     <>
       <ProductLayout

@@ -105,7 +105,7 @@ const pricing = [
   }
 ];
 
-export default function CreativePage() {
+export default function CreativePageClient() {
   return (
     <>
       <ProductLayout

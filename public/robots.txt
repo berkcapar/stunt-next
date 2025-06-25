@@ -7,13 +7,29 @@ Disallow: /api/
 Disallow: /_next/
 Disallow: /private/
 
-# Allow important pages
+# Allow important pages for all languages
+Allow: /
+Allow: /en/
+Allow: /de/
 Allow: /products/
-Allow: /pricing/
+Allow: /en/products/
+Allow: /de/products/
 Allow: /about/
+Allow: /en/about/
+Allow: /de/about/
 
 # Sitemap location
-Sitemap: https://stunt.ai/sitemap.xml
+Sitemap: https://stuntai.co/sitemap.xml
 
-# Crawl delay (optional)
-Crawl-delay: 1 
+# Crawl delay (optional, reduced for better indexing)
+Crawl-delay: 0.5
+
+# Google specific settings
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.2
+
+# Bing specific settings  
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0.5 

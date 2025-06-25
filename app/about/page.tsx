@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Berk Capar - Founder of Stunt AI Marketing Automation',
     description: 'Meet Berk Capar, founder of Stunt AI with 8 years in marketing tech. From winning awards for Nestle & Unilever to leading teams at Samsung.',
-    url: 'https://stunt.ai/about',
+    url: 'https://stuntai.co/about',
     images: [
       {
         url: '/og-about.png',
@@ -36,11 +36,11 @@ export const metadata: Metadata = {
     description: 'Meet the founder behind Stunt AI - 8 years of marketing tech experience, from Nestle to Samsung.',
   },
   alternates: {
-    canonical: '/about',
+    canonical: 'https://stuntai.co/about',
     languages: {
-      'en-US': '/about',
-      'tr-TR': '/tr/about',
-      'de-DE': '/de/about',
+      'tr': 'https://stuntai.co/about',
+      'en': 'https://stuntai.co/en/about',
+      'de': 'https://stuntai.co/de/about',
     },
   },
 };

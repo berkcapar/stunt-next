@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     'pazarlama otomasyonu',
     'yapay zeka pazarlama'
   ],
-  authors: [{ name: 'Berk Capar', url: 'https://stunt.ai' }],
+  authors: [{ name: 'Berk Capar', url: 'https://stuntai.co' }],
   creator: 'Berk Capar',
   publisher: 'Stunt AI',
   formatDetection: {
@@ -38,19 +38,19 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://stunt.ai'),
+  metadataBase: new URL('https://stuntai.co'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://stuntai.co/',
     languages: {
-      'en-US': '/en',
-      'tr-TR': '/tr',
-      'de-DE': '/de',
+      'tr': 'https://stuntai.co/',
+      'en': 'https://stuntai.co/en',
+      'de': 'https://stuntai.co/de',
     },
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://stunt.ai',
+    locale: 'tr_TR',
+    url: 'https://stuntai.co',
     title: 'Stunt - AI Marketing Automation Platform',
     description: 'Stop overpaying for marketing! AI-powered automation for reports, social media, SEO & creative content. Find new customers while saving time and money.',
     siteName: 'Stunt',
@@ -118,8 +118,22 @@ export default function RootLayout({
   const gaId = process.env.NODE_ENV === 'production' ? process.env.GA_MEASUREMENT_ID : undefined;
   
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="tr" suppressHydrationWarning>
       <head>
+        {/* Hreflang tags for SEO */}
+        <link rel="alternate" hrefLang="tr" href="https://stuntai.co/" />
+        <link rel="alternate" hrefLang="en" href="https://stuntai.co/en" />
+        <link rel="alternate" hrefLang="de" href="https://stuntai.co/de" />
+        <link rel="alternate" hrefLang="x-default" href="https://stuntai.co/" />
+        
+        {/* Preconnect for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        
+        {/* DNS Prefetch */}
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -127,8 +141,8 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'Stunt',
-              url: 'https://stunt.ai',
-              logo: 'https://stunt.ai/stunt-logo.png',
+              url: 'https://stuntai.co',
+              logo: 'https://stuntai.co/stunt-logo.png',
               description: 'AI Marketing Automation Platform for businesses to automate reports, social media, SEO and creative content generation.',
               founder: {
                 '@type': 'Person',
@@ -139,7 +153,7 @@ export default function RootLayout({
               contactPoint: {
                 '@type': 'ContactPoint',
                 contactType: 'customer service',
-                availableLanguage: ['English', 'Turkish', 'German']
+                availableLanguage: ['Turkish', 'English', 'German']
               },
               sameAs: [
                 'https://www.linkedin.com/company/67973841',

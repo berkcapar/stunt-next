@@ -1,64 +1,59 @@
 import { MetadataRoute } from 'next'
 
+const baseUrl = 'https://stuntai.co'
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://stunt.ai'
-  
-  return [
+  const pages = [
     {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/`,
-          tr: `${baseUrl}/tr`,
-          de: `${baseUrl}/de`,
-        },
-      },
+      path: '',
+      priority: 1.0,
+      changeFrequency: 'daily' as const,
     },
     {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      path: '/about',
       priority: 0.8,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/about`,
-          tr: `${baseUrl}/tr/about`,
-          de: `${baseUrl}/de/about`,
-        },
-      },
+      changeFrequency: 'weekly' as const,
     },
     {
-      url: `${baseUrl}/products/reporting`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      path: '/products/reporting',
       priority: 0.9,
+      changeFrequency: 'weekly' as const,
     },
     {
-      url: `${baseUrl}/products/creative`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      path: '/products/creative',
       priority: 0.9,
+      changeFrequency: 'weekly' as const,
     },
     {
-      url: `${baseUrl}/products/social`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      path: '/products/social',
       priority: 0.9,
+      changeFrequency: 'weekly' as const,
     },
     {
-      url: `${baseUrl}/products/seo`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      path: '/products/seo',
       priority: 0.9,
+      changeFrequency: 'weekly' as const,
     },
-    {
-      url: `${baseUrl}/pricing`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-  ]
+  ];
+
+  const languages = ['tr', 'en', 'de'];
+  const sitemap: MetadataRoute.Sitemap = [];
+
+  // Generate entries for each page in each language
+  pages.forEach(page => {
+    languages.forEach(lang => {
+      const url = lang === 'tr' 
+        ? `${baseUrl}${page.path}`  // Default language (tr) without prefix
+        : `${baseUrl}/${lang}${page.path}`; // Other languages with prefix
+
+      sitemap.push({
+        url,
+        lastModified: new Date(),
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+      });
+    });
+  });
+
+  return sitemap;
 } 

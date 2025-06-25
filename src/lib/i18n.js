@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 
 const LANGUAGES = ['tr', 'en', 'de'];
 const DEFAULT_LANGUAGE = 'tr';
@@ -9,7 +10,15 @@ const DEFAULT_LANGUAGE = 'tr';
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState(DEFAULT_LANGUAGE);
+  const params = useParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  
+  // Extract locale from pathname or use default
+  const currentLocale = pathname.startsWith('/en') ? 'en' : 
+                       pathname.startsWith('/de') ? 'de' : 'tr';
+  
+  const [language, setLanguage] = useState(currentLocale);
   const [translations, setTranslations] = useState({});
 
   // Load translations for the current language
@@ -27,21 +36,33 @@ export function LanguageProvider({ children }) {
     loadTranslations();
   }, [language]);
 
-  // Function to change the language
+  // Update language when pathname changes
+  useEffect(() => {
+    const newLocale = pathname.startsWith('/en') ? 'en' : 
+                     pathname.startsWith('/de') ? 'de' : 'tr';
+    if (newLocale !== language) {
+      setLanguage(newLocale);
+    }
+  }, [pathname, language]);
+
+  // Function to change the language with proper routing
   const changeLanguage = (newLanguage) => {
     if (LANGUAGES.includes(newLanguage)) {
-      setLanguage(newLanguage);
-      localStorage.setItem('language', newLanguage);
+      let newPath = pathname;
+      
+      // Remove current locale prefix
+      if (pathname.startsWith('/en') || pathname.startsWith('/de')) {
+        newPath = pathname.substring(3) || '/';
+      }
+      
+      // Add new locale prefix (except for default 'tr')
+      if (newLanguage !== 'tr') {
+        newPath = `/${newLanguage}${newPath}`;
+      }
+      
+      router.push(newPath);
     }
   };
-
-  // Load language from localStorage on initial render
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage && LANGUAGES.includes(savedLanguage)) {
-      setLanguage(savedLanguage);
-    }
-  }, []);
 
   // Translate function
   const t = (key) => {

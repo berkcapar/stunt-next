@@ -105,7 +105,7 @@ const pricing = [
   }
 ];
 
-export default function SeoPage() {
+export default function SeoPageClient() {
   return (
     <>
       <ProductLayout

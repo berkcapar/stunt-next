@@ -103,7 +103,7 @@ const pricing = [
   }
 ];
 
-export default function SocialPage() {
+export default function SocialPageClient() {
   return (
     <>
       <ProductLayout

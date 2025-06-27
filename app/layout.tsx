@@ -187,7 +187,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} bg-gray-50 text-gray-900 antialiased flex flex-col min-h-screen`}>
+      <body className={`${inter.className} text-gray-900 antialiased flex flex-col min-h-screen`}>
         <ClientLayout gaId={gaId}>{children}</ClientLayout>
       </body>
     </html>

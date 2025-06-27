@@ -1,39 +1,39 @@
 import type { Metadata } from 'next';
-import AboutPageClient from './AboutPageClient';
+import AboutPageClient from '../[locale]/about/AboutPageClient';
 
 export const metadata: Metadata = {
-  title: 'About Berk Capar - Founder of Stunt AI Marketing Automation',
-  description: 'Meet Berk Capar, founder of Stunt AI with 8 years in marketing tech. Former product manager for Samsung, Stack Overflow. Helping businesses automate marketing with AI.',
+  title: 'Berk Capar Hakkında - Stunt AI Marketing Automation Kurucusu',
+  description: 'Stunt AI kurucusu Berk Capar ile tanışın. 8 yıllık pazarlama teknolojisi deneyimi. Eski Samsung, Stack Overflow product manager. İşletmelerin AI ile pazarlamayı otomatikleştirmesine yardım ediyor.',
   keywords: [
     'Berk Capar',
-    'Stunt founder',
-    'marketing automation expert',
-    'AI marketing specialist',
+    'Stunt kurucusu',
+    'pazarlama otomasyonu uzmanı',
+    'AI pazarlama uzmanı',
     'product manager',
-    'marketing technology',
-    'startup founder',
-    'Samsung marketing',
+    'pazarlama teknolojisi',
+    'startup kurucusu',
+    'Samsung pazarlama',
     'Stack Overflow',
-    'Nestle campaigns',
-    'Unilever marketing'
+    'Nestle kampanyaları',
+    'Unilever pazarlama'
   ],
   openGraph: {
-    title: 'About Berk Capar - Founder of Stunt AI Marketing Automation',
-    description: 'Meet Berk Capar, founder of Stunt AI with 8 years in marketing tech. From winning awards for Nestle & Unilever to leading teams at Samsung.',
+    title: 'Berk Capar Hakkında - Stunt AI Marketing Automation Kurucusu',
+    description: 'Stunt AI kurucusu Berk Capar ile tanışın. 8 yıllık pazarlama teknolojisi deneyimi.',
     url: 'https://stuntai.co/about',
     images: [
       {
         url: '/og-about.png',
         width: 1200,
         height: 630,
-        alt: 'Berk Capar - Founder of Stunt AI Marketing Automation Platform',
+        alt: 'Berk Capar - Stunt AI Marketing Automation Platform Kurucusu',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Berk Capar - Founder of Stunt AI',
-    description: 'Meet the founder behind Stunt AI - 8 years of marketing tech experience, from Nestle to Samsung.',
+    title: 'Berk Capar Hakkında - Stunt AI Kurucusu',
+    description: 'Stunt AI arkasındaki kurucuyla tanışın - 8 yıllık pazarlama teknolojisi deneyimi.',
   },
   alternates: {
     canonical: 'https://stuntai.co/about',

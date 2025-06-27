@@ -1,7 +1,6 @@
 import { Inter } from 'next/font/google';
 import '../globals.css';
 import type { Metadata } from 'next';
-import ClientLayout from '../ClientLayout';
 import { notFound } from 'next/navigation';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -88,21 +87,6 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Server-side'da environment variable'ı oku - sadece production'da
-  const gaId = process.env.NODE_ENV === 'production' ? process.env.GA_MEASUREMENT_ID : undefined;
-  
-  return (
-    <html lang={locale} suppressHydrationWarning>
-      <head>
-        {/* Hreflang tags for SEO */}
-        <link rel="alternate" hrefLang="tr" href="https://stuntai.co/" />
-        <link rel="alternate" hrefLang="en" href="https://stuntai.co/en" />
-        <link rel="alternate" hrefLang="de" href="https://stuntai.co/de" />
-        <link rel="alternate" hrefLang="x-default" href="https://stuntai.co/" />
-      </head>
-      <body className={`${inter.className} bg-gray-50 text-gray-900 antialiased flex flex-col min-h-screen`}>
-        <ClientLayout gaId={gaId}>{children}</ClientLayout>
-      </body>
-    </html>
-  );
+  // Just return children - HTML structure is handled by root layout
+  return children;
 } 

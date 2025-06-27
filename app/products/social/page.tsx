@@ -1,38 +1,37 @@
 import type { Metadata } from 'next';
-import SocialPageClient from './SocialPageClient.jsx';
+import SocialPageClientTR from '@/app/[locale]/products/social/SocialPageClient.tr.jsx';
 
 export const metadata: Metadata = {
-  title: 'AI Social Media Automation & Scheduling | Stunt',
-  description: 'Automate your social media posting with AI. Schedule content across platforms, optimize timing, and maintain consistent engagement. 5x faster than manual posting.',
+  title: 'AI Sosyal Medya Yönetimi ve Otomasyonu | Stunt',
+  description: 'Sosyal medya varlığınızı AI ile otomatikleştirin. Gönderileri zamanlayın, performans içgörüleri alın ve kitlenizle zahmetsizce etkileşime geçin. Zamandan tasarruf edin ve daha hızlı büyüyün.',
   keywords: [
-    'social media automation',
-    'AI social media',
-    'social media scheduling',
-    'automated posting',
-    'social media management',
-    'content scheduling',
-    'social media tools',
-    'Instagram automation',
-    'LinkedIn automation',
-    'sosyal medya otomasyonu'
+    'sosyal medya otomasyonu',
+    'AI sosyal medya pazarlaması',
+    'gönderi zamanlama aracı',
+    'sosyal medya yönetimi',
+    'kitle etkileşimi',
+    'sosyal medya analitiği',
+    'içerik takvimi otomasyonu',
+    'marka varlığı',
+    'sosyal medya otomasyonu',
   ],
   openGraph: {
-    title: 'AI Social Media Automation & Scheduling | Stunt',
-    description: 'Automate your social media posting with AI. Schedule content across platforms and maintain consistent engagement.',
+    title: 'AI Sosyal Medya Yönetimi ve Otomasyonu | Stunt',
+    description: 'Sosyal medya varlığınızı AI ile otomatikleştirin. Gönderileri zamanlayın, performans içgörüleri alın ve kitlenizle zahmetsizce etkileşime geçin.',
     url: 'https://stuntai.co/products/social',
     images: [
       {
         url: '/og-social.png',
         width: 1200,
         height: 630,
-        alt: 'Stunt AI Social Media Automation & Scheduling',
+        alt: 'Stunt AI Sosyal Medya Yönetimi ve Otomasyonu',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Social Media Automation & Scheduling | Stunt',
-    description: 'Automate your social media posting with AI. 5x faster than manual posting.',
+    title: 'AI Sosyal Medya Yönetimi ve Otomasyonu | Stunt',
+    description: 'Sosyal medya varlığınızı AI ile otomatikleştirin. Zamandan tasarruf edin ve daha hızlı büyüyün.',
   },
   alternates: {
     canonical: 'https://stuntai.co/products/social',
@@ -45,5 +44,5 @@ export const metadata: Metadata = {
 };
 
 export default function SocialPage() {
-  return <SocialPageClient />;
+  return <SocialPageClientTR />;
 } 

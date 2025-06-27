@@ -14,7 +14,7 @@ export default function HeroSection() {
   };
   
   return (
-    <section className="bg-gradient-to-br from-purple-50 to-indigo-100 py-20 md:py-32">
+    <section className="bg-gradient-to-br from-purple-50 to-indigo-100 py-12 md:py-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-1/2 text-center lg:text-left">

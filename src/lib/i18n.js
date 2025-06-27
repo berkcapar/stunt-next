@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 const LANGUAGES = ['tr', 'en', 'de'];
+const DEFAULT_LOCALE = 'tr';
 
 // Create a context to manage the language state
 const LanguageContext = createContext();
@@ -12,11 +13,15 @@ export function LanguageProvider({ children }) {
   const pathname = usePathname();
   const router = useRouter();
   
-  // Extract locale from pathname or use default
-  const currentLocale = pathname.startsWith('/en') ? 'en' : 
-                       pathname.startsWith('/de') ? 'de' : 'tr';
-  
-  const [language, setLanguage] = useState(currentLocale);
+  const getLocaleFromPathname = (path) => {
+    const segments = path.split('/').filter(Boolean);
+    if (segments.length > 0 && LANGUAGES.includes(segments[0]) && segments[0] !== DEFAULT_LOCALE) {
+      return segments[0];
+    }
+    return DEFAULT_LOCALE;
+  };
+
+  const [language, setLanguage] = useState(getLocaleFromPathname(pathname));
   const [translations, setTranslations] = useState({});
 
   // Load translations for the current language
@@ -36,8 +41,7 @@ export function LanguageProvider({ children }) {
 
   // Update language when pathname changes
   useEffect(() => {
-    const newLocale = pathname.startsWith('/en') ? 'en' : 
-                     pathname.startsWith('/de') ? 'de' : 'tr';
+    const newLocale = getLocaleFromPathname(pathname);
     if (newLocale !== language) {
       setLanguage(newLocale);
     }
@@ -45,24 +49,37 @@ export function LanguageProvider({ children }) {
 
   // Function to change the language with proper routing
   const changeLanguage = (newLanguage) => {
-    if (LANGUAGES.includes(newLanguage)) {
-      let newPath = pathname;
-      
-      // Remove current locale prefix
-      if (pathname.startsWith('/en') || pathname.startsWith('/de')) {
-        newPath = pathname.substring(3) || '/';
-      }
-      
-      // Add new locale prefix (except for default 'tr')
-      if (newLanguage !== 'tr') {
-        newPath = `/${newLanguage}${newPath}`;
-      }
-      
-      router.push(newPath);
+    if (!LANGUAGES.includes(newLanguage)) {
+      return;
     }
+
+    const currentLocale = getLocaleFromPathname(pathname);
+    let newPath = pathname;
+
+    // Remove current locale prefix if it exists
+    if (currentLocale !== DEFAULT_LOCALE) {
+      newPath = newPath.substring(newPath.indexOf(currentLocale) + currentLocale.length);
+    }
+    
+    // Add new locale prefix if it's not the default
+    if (newLanguage !== DEFAULT_LOCALE) {
+      newPath = `/${newLanguage}${newPath}`;
+    }
+
+    // Ensure path starts with a slash
+    if (!newPath.startsWith('/')) {
+      newPath = `/${newPath}`;
+    }
+    
+    router.push(newPath);
   };
 
   const t = (key) => {
+    // Check if key is defined and is a string
+    if (!key || typeof key !== 'string') {
+      return key || '';
+    }
+    
     const keys = key.split('.');
     let value = translations;
     

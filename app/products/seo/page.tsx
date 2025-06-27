@@ -1,38 +1,38 @@
 import type { Metadata } from 'next';
-import SeoPageClient from './SeoPageClient.jsx';
+import SEOPageClientTR from '@/app/[locale]/products/seo/SEOPageClient.tr.jsx';
 
 export const metadata: Metadata = {
-  title: 'AI SEO Content Generation & Blog Automation | Stunt',
-  description: 'Generate SEO-optimized blog posts automatically with AI. Rank higher on Google with automated keyword research, content creation, and on-page optimization.',
+  title: 'AI SEO İçerik Üretimi ve Otomasyonu | Stunt',
+  description: 'SEO içerik stratejinizi AI ile otomatikleştirin. Optimize edilmiş blog yazıları üretin, anahtar kelimeler bulun ve Google sıralamalarında yükselme.',
   keywords: [
-    'AI SEO content',
-    'SEO blog automation',
-    'AI content generation',
-    'SEO optimization',
-    'keyword research',
-    'content marketing',
-    'blog post generator',
-    'organic traffic',
-    'search engine optimization',
-    'SEO otomasyon'
+    'SEO otomasyonu',
+    'AI içerik üretimi',
+    'SEO içerik yazımı',
+    'anahtar kelime araştırma aracı',
+    'blog yazısı üretici',
+    'Google sıralaması',
+    'organik trafik',
+    'içerik pazarlama otomasyonu',
+    'SEO için AI',
+    'SEO otomasyonu'
   ],
   openGraph: {
-    title: 'AI SEO Content Generation & Blog Automation | Stunt',
-    description: 'Generate SEO-optimized blog posts automatically with AI. Rank higher on Google with automated content creation.',
+    title: 'AI SEO İçerik Üretimi ve Otomasyonu | Stunt',
+    description: 'SEO içerik stratejinizi AI ile otomatikleştirin. Optimize edilmiş blog yazıları üretin, anahtar kelimeler bulun ve Google sıralamalarında yükselme.',
     url: 'https://stuntai.co/products/seo',
     images: [
       {
         url: '/og-seo.png',
         width: 1200,
         height: 630,
-        alt: 'Stunt AI SEO Content Generation & Blog Automation',
+        alt: 'Stunt AI SEO İçerik Üretimi ve Otomasyonu',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI SEO Content Generation & Blog Automation | Stunt',
-    description: 'Generate SEO-optimized blog posts automatically with AI. Rank higher on Google.',
+    title: 'AI SEO İçerik Üretimi ve Otomasyonu | Stunt',
+    description: 'SEO içerik stratejinizi AI ile otomatikleştirin ve Google sıralamalarında yükselme.',
   },
   alternates: {
     canonical: 'https://stuntai.co/products/seo',
@@ -44,6 +44,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SeoPage() {
-  return <SeoPageClient />;
+export default function SEOPage() {
+  return <SEOPageClientTR />;
 } 

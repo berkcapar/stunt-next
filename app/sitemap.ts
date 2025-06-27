@@ -36,18 +36,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const languages = ['tr', 'en', 'de'];
   const sitemap: MetadataRoute.Sitemap = [];
 
-  // Generate entries for each page in each language
+  // Ana dil (TR) için rotalar - prefix olmadan
   pages.forEach(page => {
-    languages.forEach(lang => {
-      const url = lang === 'tr' 
-        ? `${baseUrl}${page.path}`  // Default language (tr) without prefix
-        : `${baseUrl}/${lang}${page.path}`; // Other languages with prefix
+    sitemap.push({
+      url: `${baseUrl}${page.path}`,
+      lastModified: new Date(),
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    });
+  });
 
+  // Diğer diller (EN, DE) için rotalar - prefix ile
+  const otherLanguages = ['en', 'de'];
+  pages.forEach(page => {
+    otherLanguages.forEach(lang => {
       sitemap.push({
-        url,
+        url: `${baseUrl}/${lang}${page.path}`,
         lastModified: new Date(),
         changeFrequency: page.changeFrequency,
         priority: page.priority,

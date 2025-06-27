@@ -1,38 +1,38 @@
 import type { Metadata } from 'next';
-import ReportingPageClient from './ReportingPageClient.jsx';
+import ReportingPageClientTR from '@/app/[locale]/products/reporting/ReportingPageClient.tr.jsx';
 
 export const metadata: Metadata = {
-  title: 'AI Marketing Reports & Analytics Automation | Stunt',
-  description: 'Automate your marketing reports with AI. Get Google Ads, Meta, and website analytics delivered daily. Save 10+ hours per week with automated insights.',
+  title: 'AI Pazarlama Raporları ve Analitik Otomasyonu | Stunt',
+  description: 'Pazarlama raporlarınızı AI ile otomatikleştirin. Google Ads, Meta ve web sitesi analitiğini günlük olarak alın. Otomatik içgörülerle haftada 10+ saat kazanın.',
   keywords: [
-    'marketing reports automation',
-    'AI marketing analytics',
-    'Google Ads reporting',
-    'Meta advertising reports',
-    'marketing dashboard',
-    'automated insights',
-    'digital marketing analytics',
-    'campaign performance reports',
-    'marketing ROI tracking',
+    'pazarlama raporları otomasyonu',
+    'AI pazarlama analitiği',
+    'Google Ads raporlama',
+    'Meta reklam raporları',
+    'pazarlama dashboardu',
+    'otomatik içgörüler',
+    'dijital pazarlama analitiği',
+    'kampanya performans raporları',
+    'pazarlama ROI takibi',
     'pazarlama raporları otomasyonu'
   ],
   openGraph: {
-    title: 'AI Marketing Reports & Analytics Automation | Stunt',
-    description: 'Automate your marketing reports with AI. Get Google Ads, Meta, and website analytics delivered daily. Save 10+ hours per week.',
+    title: 'AI Pazarlama Raporları ve Analitik Otomasyonu | Stunt',
+    description: 'Pazarlama raporlarınızı AI ile otomatikleştirin. Google Ads, Meta ve web sitesi analitiğini günlük olarak alın. Haftada 10+ saat kazanın.',
     url: 'https://stuntai.co/products/reporting',
     images: [
       {
         url: '/og-reporting.png',
         width: 1200,
         height: 630,
-        alt: 'Stunt AI Marketing Reports & Analytics Automation',
+        alt: 'Stunt AI Pazarlama Raporları ve Analitik Otomasyonu',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Marketing Reports & Analytics Automation | Stunt',
-    description: 'Automate your marketing reports with AI. Save 10+ hours per week with automated insights.',
+    title: 'AI Pazarlama Raporları ve Analitik Otomasyonu | Stunt',
+    description: 'Pazarlama raporlarınızı AI ile otomatikleştirin. Haftada 10+ saat kazanın.',
   },
   alternates: {
     canonical: 'https://stuntai.co/products/reporting',
@@ -45,5 +45,5 @@ export const metadata: Metadata = {
 };
 
 export default function ReportingPage() {
-  return <ReportingPageClient />;
+  return <ReportingPageClientTR />;
 } 

@@ -4,6 +4,8 @@ import { useLanguage } from '@/src/lib/i18n';
 import Button from '@/src/components/ui/Button';
 import Icon from '@/src/components/ui/Icon';
 import Image from 'next/image';
+import PricingSection from '@/src/components/home/PricingSection';
+
 export default function ProductLayout({ 
   productId, 
   icon, 
@@ -21,6 +23,17 @@ export default function ProductLayout({
 }) {
   const { t } = useLanguage();
   
+  // Helper function to determine if content is a translation key or hardcoded content
+  const getContent = (content) => {
+    if (!content) return '';
+    // If content starts with lowercase and contains dots, treat as translation key
+    if (typeof content === 'string' && content.match(/^[a-z][a-z_]*\./)) {
+      return t(content);
+    }
+    // Otherwise treat as hardcoded content
+    return content;
+  };
+  
   return (
     <>
       {/* Hero Section */}
@@ -35,11 +48,11 @@ export default function ProductLayout({
               </div>
               
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                {t(titleKey)}
+                {getContent(titleKey)}
               </h1>
               
               <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto lg:mx-0">
-                {t(descriptionKey)}
+                {getContent(descriptionKey)}
               </p>
               
               <Button 
@@ -115,19 +128,19 @@ export default function ProductLayout({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="bg-gray-50 p-8 rounded-lg">
               <h2 className="text-2xl font-bold text-purple-600 mb-6">
-                {t(whatTitleKey)}
+                {getContent(whatTitleKey)}
               </h2>
               <p className="text-gray-700">
-                {t(whatDescKey)}
+                {getContent(whatDescKey)}
               </p>
             </div>
             
             <div className="bg-gray-50 p-8 rounded-lg">
               <h2 className="text-2xl font-bold text-purple-600 mb-6">
-                {t(howTitleKey)}
+                {getContent(howTitleKey)}
               </h2>
               <p className="text-gray-700">
-                {t(howDescKey)}
+                {getContent(howDescKey)}
               </p>
             </div>
           </div>
@@ -138,7 +151,7 @@ export default function ProductLayout({
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            {t(featuresKey)}
+            {getContent(featuresKey)}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -152,11 +165,11 @@ export default function ProductLayout({
                 </div>
                 
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">
-                  {t(feature.titleKey)}
+                  {getContent(feature.titleKey)}
                 </h3>
                 
                 <p className="text-gray-700">
-                  {t(feature.descKey)}
+                  {getContent(feature.descKey)}
                 </p>
               </div>
             ))}
@@ -168,7 +181,7 @@ export default function ProductLayout({
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            {t(useCasesTitleKey)}
+            {getContent(useCasesTitleKey)}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -183,22 +196,25 @@ export default function ProductLayout({
                   </div>
                   
                   <h3 className="text-xl font-semibold text-gray-900">
-                    {t(useCase.titleKey)}
+                    {getContent(useCase.titleKey)}
                   </h3>
                 </div>
                 
                 <p className="text-gray-700 mb-4">
-                  {t(useCase.descKey)}
+                  {getContent(useCase.descKey)}
                 </p>
                 
                 <div className="text-sm text-gray-600 italic">
-                  "{t(useCase.quoteKey)}"
+                  {getContent(useCase.quoteKey)}
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+      
+      {/* Pricing Section */}
+      <PricingSection />
       
       {/* Additional Content */}
       {children}

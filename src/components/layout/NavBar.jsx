@@ -14,25 +14,25 @@ const LANGUAGE_CONFIG = [
 
 const FEATURES_MENU = [
   { 
-    href: '/products/reporting',
+    href: 'reporting',
     icon: 'chart-pie',
     labelKey: 'nav.reporting',
     descriptionKey: 'nav.reporting_desc'
   },
   {
-    href: '/products/creative',
+    href: 'creative',
     icon: 'paint-brush',
     labelKey: 'nav.creative',
     descriptionKey: 'nav.creative_desc'
   },
   {
-    href: '/products/social',
+    href: 'social',
     icon: 'share-alt',
     labelKey: 'nav.social',
     descriptionKey: 'nav.social_desc'
   },
   {
-    href: '/products/seo',
+    href: 'seo',
     icon: 'search',
     labelKey: 'nav.seo',
     descriptionKey: 'nav.seo_desc'
@@ -40,7 +40,7 @@ const FEATURES_MENU = [
 ];
 
 export default function NavBar() {
-  const { t, language, changeLanguage, LANGUAGES } = useLanguage();
+  const { t, language, changeLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -76,16 +76,24 @@ export default function NavBar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Helper function to get the correct URL path based on language
+  const getLocalizedPath = (path) => {
+    if (language === 'tr') {
+      return path; // TR için prefix yok
+    }
+    return `/${language}${path}`;
+  };
+
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-[30] transition-all duration-300 bg-white ${
-        scrolled ? 'py-2 shadow-md' : 'py-4'
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white border-b border-gray-100 ${
+        scrolled ? 'py-2' : 'py-4'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href={getLocalizedPath('/')} className="flex items-center">
             <Image 
               src="/stunt-logo.png" 
               alt="Stunt Logo" 
@@ -115,14 +123,14 @@ export default function NavBar() {
               </button>
               
               <div 
-                className={`absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 border border-gray-100 transition-all duration-200 ${
+                className={`absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl py-2 border border-gray-100 transition-all duration-200 z-50 ${
                   isDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-1'
                 }`}
               >
                 {FEATURES_MENU.map((item) => (
                   <Link 
                     key={item.href}
-                    href={item.href} 
+                    href={getLocalizedPath(`/products/${item.href}`)}
                     className="block px-4 py-3 text-gray-800 hover:bg-purple-50 transition-colors duration-200"
                   >
                     <div className="flex items-start">
@@ -137,11 +145,11 @@ export default function NavBar() {
               </div>
             </div>
             
-            <Link href="/#pricing" className="text-gray-800 hover:text-purple-600 transition-colors text-xl font-medium">
+            <Link href={getLocalizedPath('/#pricing')} className="text-gray-800 hover:text-purple-600 transition-colors text-xl font-medium">
               {t('nav.pricing')}
             </Link>
             
-            <Link href="/about" className="text-gray-800 hover:text-purple-600 transition-colors text-xl font-medium">
+            <Link href={getLocalizedPath('/about')} className="text-gray-800 hover:text-purple-600 transition-colors text-xl font-medium">
               {t('nav.about')}
             </Link>
           </nav>
@@ -175,14 +183,14 @@ export default function NavBar() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden">
+          <div className="md:hidden bg-white border-t border-gray-100 mt-4">
             <div className="py-4">
               <div className="font-medium text-xl mb-4">{t('nav.features')}</div>
               <div className="space-y-2">
                 {FEATURES_MENU.map((item) => (
                   <Link
                     key={item.href}
-                    href={item.href}
+                    href={getLocalizedPath(`/products/${item.href}`)}
                     className="block py-3 px-4 text-gray-800 hover:bg-purple-50 rounded-lg transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -200,7 +208,7 @@ export default function NavBar() {
             
             <div className="py-4 border-t border-gray-100">
               <Link 
-                href="/#pricing" 
+                href={getLocalizedPath('/#pricing')} 
                 className="block text-xl font-medium py-2 hover:text-purple-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -210,7 +218,7 @@ export default function NavBar() {
             
             <div className="py-4 border-t border-gray-100">
               <Link 
-                href="/about" 
+                href={getLocalizedPath('/about')} 
                 className="block text-xl font-medium py-2 hover:text-purple-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >

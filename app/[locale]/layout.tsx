@@ -1,9 +1,6 @@
-import { Inter } from 'next/font/google';
 import '../globals.css';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-
-const inter = Inter({ subsets: ['latin'] });
 
 const locales = ['en', 'de'];
 

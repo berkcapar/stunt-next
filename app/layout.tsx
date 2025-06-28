@@ -7,10 +7,10 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Stunt - AI Marketing Automation Platform | Stop Overpaying for Marketing',
+    default: 'StuntAI - AI Marketing Automation Platform | Stop Overpaying for Marketing',
     template: '%s | Stunt'
   },
-  description: 'Stop overpaying for marketing! Get AI-powered marketing automation: reports, social media content, SEO articles & creative generation. Save time and money while finding new customers.',
+  description: 'Get AI-powered marketing automation: social media content, reports, SEO articles & creative generation. Save time and money while finding new customers.',
   // Google Search Console verification - eğer gerekirse buraya eklenecek
   // verification: {
   //   google: 'your-google-site-verification-code'

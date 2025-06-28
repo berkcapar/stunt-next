@@ -1,24 +1,11 @@
+# Allow all search engines
 User-agent: *
 Allow: /
 
-# Block admin and private areas
-Disallow: /admin/
-Disallow: /api/
+# Disallow crawling of Next.js internal folders
 Disallow: /_next/
-Disallow: /private/
 
-# Allow important pages for all languages
-Allow: /
-Allow: /en/
-Allow: /de/
-Allow: /products/
-Allow: /en/products/
-Allow: /de/products/
-Allow: /about/
-Allow: /en/about/
-Allow: /de/about/
-
-# Sitemap location
+# Point to the sitemap
 Sitemap: https://stuntai.co/sitemap.xml
 
 # Crawl delay (optional, reduced for better indexing)

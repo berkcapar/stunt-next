@@ -25,7 +25,7 @@ export async function generateMetadata({
   const currentUrl = `${baseUrl}/${locale}`;
 
   const titles = {
-    en: 'Stunt - AI Marketing Automation Platform | Stop Overpaying for Marketing',
+    en: 'StuntAI - AI Marketing Automation Platform | Stop Overpaying for Marketing',
     de: 'Stunt - KI Marketing Automation Plattform | Stoppen Sie Overpaying für Marketing'
   };
 

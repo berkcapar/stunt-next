@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const locales = ['en', 'de'];
-const defaultLocale = 'tr';
+const locales = ['en', 'de', 'tr'];
+const defaultLocale = 'en';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -16,7 +16,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
   
-  // Check if the pathname already has a supported locale prefix (/en, /de)
+  // Redirect root path to default locale
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url));
+  }
+  
+  // Check if the pathname already has a supported locale prefix (/en, /de, /tr)
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
@@ -25,9 +30,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // For Turkish (default locale), no rewrite needed - direct routing handles it
-  // /products/* and /about are handled by their respective app directories
-  return NextResponse.next();
+  // If no locale is found, redirect to default locale
+  return NextResponse.redirect(new URL(`/${defaultLocale}${pathname}`, request.url));
 }
 
 export const config = {

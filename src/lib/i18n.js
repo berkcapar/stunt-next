@@ -3,8 +3,8 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-const LANGUAGES = ['tr', 'en', 'de'];
-const DEFAULT_LOCALE = 'tr';
+const LANGUAGES = ['en', 'de', 'tr'];
+const DEFAULT_LOCALE = 'en';
 
 // Create a context to manage the language state
 const LanguageContext = createContext();
@@ -15,7 +15,7 @@ export function LanguageProvider({ children }) {
   
   const getLocaleFromPathname = (path) => {
     const segments = path.split('/').filter(Boolean);
-    if (segments.length > 0 && LANGUAGES.includes(segments[0]) && segments[0] !== DEFAULT_LOCALE) {
+    if (segments.length > 0 && LANGUAGES.includes(segments[0])) {
       return segments[0];
     }
     return DEFAULT_LOCALE;
@@ -57,19 +57,18 @@ export function LanguageProvider({ children }) {
     let newPath = pathname;
 
     // Remove current locale prefix if it exists
-    if (currentLocale !== DEFAULT_LOCALE) {
+    if (currentLocale && LANGUAGES.includes(currentLocale)) {
       newPath = newPath.substring(newPath.indexOf(currentLocale) + currentLocale.length);
     }
     
-    // Add new locale prefix if it's not the default
-    if (newLanguage !== DEFAULT_LOCALE) {
-      newPath = `/${newLanguage}${newPath}`;
-    }
+    // Add new locale prefix
+    newPath = `/${newLanguage}${newPath}`;
 
-    // Ensure path starts with a slash
+    // Ensure path starts with a slash and doesn't have double slashes
     if (!newPath.startsWith('/')) {
       newPath = `/${newPath}`;
     }
+    newPath = newPath.replace(/\/+/g, '/');
     
     router.push(newPath);
   };

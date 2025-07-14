@@ -40,17 +40,17 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL('https://stuntai.co'),
   alternates: {
-    canonical: 'https://stuntai.co/',
+    canonical: 'https://stuntai.co/en',
     languages: {
-      'tr': 'https://stuntai.co/',
       'en': 'https://stuntai.co/en',
       'de': 'https://stuntai.co/de',
+      'tr': 'https://stuntai.co/tr',
     },
   },
   openGraph: {
     type: 'website',
-    locale: 'tr_TR',
-    url: 'https://stuntai.co',
+    locale: 'en_US',
+    url: 'https://stuntai.co/en',
     title: 'Stunt - AI Marketing Automation Platform',
     description: 'Stop overpaying for marketing! AI-powered automation for reports, social media, SEO & creative content. Find new customers while saving time and money.',
     siteName: 'Stunt',
@@ -118,13 +118,13 @@ export default function RootLayout({
   const gaId = process.env.NODE_ENV === 'production' ? process.env.GA_MEASUREMENT_ID : undefined;
   
   return (
-    <html lang="tr" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Hreflang tags for SEO */}
-        <link rel="alternate" hrefLang="tr" href="https://stuntai.co/" />
         <link rel="alternate" hrefLang="en" href="https://stuntai.co/en" />
         <link rel="alternate" hrefLang="de" href="https://stuntai.co/de" />
-        <link rel="alternate" hrefLang="x-default" href="https://stuntai.co/" />
+        <link rel="alternate" hrefLang="tr" href="https://stuntai.co/tr" />
+        <link rel="alternate" hrefLang="x-default" href="https://stuntai.co/en" />
         
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

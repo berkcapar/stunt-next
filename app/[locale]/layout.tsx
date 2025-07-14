@@ -2,7 +2,7 @@ import '../globals.css';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-const locales = ['en', 'de'];
+const locales = ['en', 'de', 'tr'];
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({
@@ -26,12 +26,14 @@ export async function generateMetadata({
 
   const titles = {
     en: 'StuntAI - AI Marketing Automation Platform | Stop Overpaying for Marketing',
-    de: 'Stunt - KI Marketing Automation Plattform | Stoppen Sie Overpaying für Marketing'
+    de: 'Stunt - KI Marketing Automation Plattform | Stoppen Sie Overpaying für Marketing',
+    tr: 'StuntAI - AI Pazarlama Otomasyon Platformu | Pazarlama için Fazla Ödeme Yapmayı Bırakın'
   };
 
   const descriptions = {
     en: 'Stop overpaying for marketing! Get AI-powered marketing automation: reports, social media content, SEO articles & creative generation. Save time and money while finding new customers.',
-    de: 'Stoppen Sie das Overpaying für Marketing! Holen Sie sich KI-gestützte Marketing-Automatisierung: Berichte, Social Media Content, SEO-Artikel & kreative Generierung.'
+    de: 'Stoppen Sie das Overpaying für Marketing! Holen Sie sich KI-gestützte Marketing-Automatisierung: Berichte, Social Media Content, SEO-Artikel & kreative Generierung.',
+    tr: 'Pazarlama için fazla ödeme yapmayı bırakın! AI destekli pazarlama otomasyonu: raporlar, sosyal medya içeriği, SEO makaleleri ve yaratıcı üretim. Zaman ve para tasarrufu yapın.'
   };
 
   return {
@@ -41,16 +43,16 @@ export async function generateMetadata({
     },
     description: descriptions[locale as keyof typeof descriptions],
     alternates: {
-      canonical: `${baseUrl}/`,
+      canonical: `${baseUrl}/en`,
       languages: {
-        'tr': `${baseUrl}/`,
         'en': `${baseUrl}/en`,
         'de': `${baseUrl}/de`,
+        'tr': `${baseUrl}/tr`,
       },
     },
     openGraph: {
       type: 'website',
-      locale: locale === 'en' ? 'en_US' : 'de_DE',
+      locale: locale === 'en' ? 'en_US' : locale === 'de' ? 'de_DE' : 'tr_TR',
       url: currentUrl,
       title: titles[locale as keyof typeof titles],
       description: descriptions[locale as keyof typeof descriptions],
